@@ -3,6 +3,7 @@ import re
 import shutil
 import logging
 import configparser
+from datetime import datetime
 
 #Open Config file
 config = configparser.ConfigParser()
@@ -129,7 +130,20 @@ def copy_image(filename, source_dir, dest_dir):
     # If the file is not found, raise an error
     raise FileNotFoundError(f"{filename} not found in {source_dir}")
     
-    
+
+# ----- File name management -------
+
+#Rename files that don't have the correct format or keep the ones that do the same
+def file_rename(name:str)->str:
+    correct_filename_pattern = r"(\d{4}-\d{2}-\d{2}-)?(.*)"
+    match = re.search(correct_filename_pattern, name)
+    if match.group(1):
+        return name
+    else:
+        return f"{datetime.today().strftime(r"%Y-%m-%d")}-{name}"
+
+
+
 # ----- Other utilities -------
 
 # Get all markdown files in current working directory
@@ -171,7 +185,9 @@ def main():
     for filename in md_files:
 
         input_filepath = os.path.join(SRC_POSTS, filename)
-        output_filepath = os.path.join(DEST_POSTS, filename)
+
+        new_filename = file_rename(filename)
+        output_filepath = os.path.join(DEST_POSTS, new_filename)
 
         # for line in file
         print("Reading file: \n\t" + input_filepath)

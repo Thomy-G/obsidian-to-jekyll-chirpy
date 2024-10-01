@@ -12,13 +12,14 @@ Features Summary
 - [x] as above, but for relative or full paths in either markdown or wikilink style (e.g. `![[/long/path/to/image.png]]` or `![alt-text](/long/path/to/image.png)`) 
 - [x] supports in-line width resizing (e.g. `![[image | 300]]` → `{: width="300"}`)
 - [x] finds and copies images used in markdown to the user-defined jekyll attachment folder
+- [x] auto generating correct page names without date given (e.g. "Example Post.md" → "YYYY-MM-DD-example-post.md")
 
 **Not** Supported Yet
 - [ ] links to other posts (e.g. `[[other post]]` → `[Name of Link]({% post_url 2010-07-21-name-of-post %})`) 
 - [ ] use of aliases (`[[post | alias ]]`)
 - [ ] links to pdfs or csvs
 - [ ] admonitions (`> [!INFO]` → `{: .prompt-info}`)
-- [ ] auto generating correct page names without date given (e.g. "Example Post.md" → "YYYY-MM-DD-example-post.md")
+
 
 This script assumes that we are using a specific folder holding all the markdown files that we want to pubish to our Jekyll blog. It does not traverse the whole vault, nor is it selective about which files to convert.
 
