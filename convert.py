@@ -2,17 +2,21 @@ import os
 import re
 import shutil
 import logging
+import configparser
 
+#Open Config file
+config = configparser.ConfigParser()
+config.read('config.ini')
 # -------- DEFINE GLOBAL VARIABLES 
 # Destination Directories (jekyll project folder)
-DEST_BASE = "/Users/s/11_code/smaroukis.github.io"
+DEST_BASE = config["Destination"]["DEST_BASE"]
 DEST_POSTS = os.path.join(DEST_BASE, "_posts") # where the converted files will go
 DEST_IMG = os.path.join(DEST_BASE, "assets", "img") # where the images will be copied to
 
 # Source Directories (e.g. Obsidian vault)
-SRC_BASE = "/Users/s/Library/Mobile Documents/iCloud~md~obsidian/Documents/Genesis/"
-SRC_SUBDIR_POSTS = "01-99_Personal/30-49_Projects-Personal/40-blog/_posts"
-SRC_SUBDIR_IMG = "z_attachments" # top level directory where the images are stored, script will search subdirectories
+SRC_BASE = config["SRC"]["SRC_BASE"]
+SRC_SUBDIR_POSTS = config["SRC"]["SRC_SUBDIR_POSTS"]
+SRC_SUBDIR_IMG = config["SRC"]["SRC_SUBDIR_IMG"] # top level directory where the images are stored, script will search subdirectories
 
 SRC_POSTS = os.path.join(SRC_BASE, SRC_SUBDIR_POSTS)
 SRC_IMG = os.path.join(SRC_BASE, SRC_SUBDIR_IMG)

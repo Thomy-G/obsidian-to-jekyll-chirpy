@@ -1,0 +1,7 @@
+[Destination]
+DEST_BASE =
+
+[SRC]
+SRC_BASE = 
+SRC_SUBDIR_POSTS = 
+SRC_SUBDIR_IMG =
